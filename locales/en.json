@@ -1,0 +1,9 @@
+{
+  "login": {
+    "welcome": "Welcome 🤗",
+    "helpText": "Log In with your account",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "logInButton": "Log In"
+  }
+}
