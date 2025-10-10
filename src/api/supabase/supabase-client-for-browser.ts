@@ -1,7 +1,8 @@
-import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
+import { Database } from '@/api/supabase/database.types'
+import { createBrowserClient } from '@supabase/ssr'
 
 export const createSupabaseClientForBrowser = () =>
-  createPagesBrowserClient({
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  })
+  createBrowserClient<Database['public']>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  )

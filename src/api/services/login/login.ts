@@ -1,3 +1,4 @@
+import { Database } from '@/api/supabase/database.types'
 import { LogInResponse } from '@/domain/log-in'
 import { SupabaseClient } from '@supabase/supabase-js'
 
@@ -8,14 +9,14 @@ export const logIn = async ({
 }: {
   email: string
   password: string
-  client: SupabaseClient
+  client: SupabaseClient<Database['public']>
 }): Promise<LogInResponse> => {
   const { data, error } = await client.auth.signInWithPassword({
     email,
     password,
   })
 
-  if (data.session?.access_token && !error) {
+  if (data?.session?.access_token && !error) {
     return { status: 'SUCCESS', accessToken: data.session.access_token }
   }
 

@@ -7,14 +7,22 @@ import {
   Typography,
   Paper,
   CircularProgress,
+  Alert,
 } from '@mui/material'
 import en from '../../../locales/en.json'
 import { useLogin } from './use-login'
 import { LoginOutlined } from '@mui/icons-material'
 
 const LoginPage = () => {
-  const { setPassword, setEmail, handleSubmit, email, password, loading } =
-    useLogin()
+  const {
+    handleEmailChange,
+    handlePasswordChange,
+    handleSubmit,
+    email,
+    password,
+    loading,
+    error,
+  } = useLogin()
 
   return (
     <Container
@@ -57,6 +65,12 @@ const LoginPage = () => {
           {en.login.helpText}
         </Typography>
 
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <TextField
             margin="normal"
@@ -66,9 +80,11 @@ const LoginPage = () => {
             label={en.login.emailLabel}
             name="email"
             autoComplete="email"
+            error={Boolean(email.error)}
+            helperText={email.error}
             autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={email.value}
+            onChange={(e) => handleEmailChange(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -79,8 +95,10 @@ const LoginPage = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            error={Boolean(password.error)}
+            helperText={password.error}
+            value={password.value}
+            onChange={(e) => handlePasswordChange(e.target.value)}
           />
           <Button
             type="submit"

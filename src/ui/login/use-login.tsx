@@ -1,43 +1,57 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { logIn } from '@/api/services/login'
+import { logIn } from '@/api/services/login/login'
 import { useSupabase } from '@/providers/supabase-provider'
+import { InputField, validateField } from '@/validation'
 
 type UseLoginReturn = {
-  email: string
-  password: string
-  setEmail: (v: string) => void
-  setPassword: (v: string) => void
+  email: InputField
+  password: InputField
+  handleEmailChange: (v: string) => void
+  handlePasswordChange: (v: string) => void
   loading: boolean
   error: string | null
   handleSubmit: (e: React.FormEvent) => Promise<void>
 }
 
-const saveAccessTokenInCookie = (token: string) =>
-  (document.cookie = `access_token=${token}; max-age=${
-    60 * 60 * 24
-  }; path=/; SameSite=Lax`)
-
 export function useLogin(): UseLoginReturn {
   const supabaseCient = useSupabase()
   const router = useRouter()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState<InputField>({
+    value: '',
+    error: '',
+    kind: 'EMAIL',
+  })
+  const [password, setPassword] = useState<InputField>({
+    value: '',
+    error: '',
+    kind: 'PASSWORD',
+  })
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(null)
+
+    const emailError = validateField(email)
+    const passwordError = validateField(password)
+
+    if (emailError || passwordError) {
+      setEmail((prev) => ({ ...prev, error: emailError }))
+      setPassword((prev) => ({ ...prev, error: passwordError }))
+      setLoading(false)
+      return
+    }
 
     const loginResponse = await logIn({
       client: supabaseCient,
-      email,
-      password,
+      email: email.value,
+      password: password.value,
     })
 
     setLoading(false)
@@ -46,16 +60,28 @@ export function useLogin(): UseLoginReturn {
       return
     }
 
-    saveAccessTokenInCookie(loginResponse.accessToken)
-    console.log('loggued')
     router.push('/')
   }
+
+  const handleEmailChange = useCallback(
+    (inputValue: string) =>
+      setEmail((prev) => ({ ...prev, value: inputValue })),
+
+    [],
+  )
+
+  const handlePasswordChange = useCallback(
+    (inputValue: string) =>
+      setPassword((prev) => ({ ...prev, value: inputValue })),
+
+    [],
+  )
 
   return {
     email,
     password,
-    setEmail,
-    setPassword,
+    handleEmailChange,
+    handlePasswordChange,
     loading,
     error,
     handleSubmit,

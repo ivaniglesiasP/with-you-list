@@ -5,5 +5,11 @@
     "emailLabel": "Email",
     "passwordLabel": "Password",
     "logInButton": "Log In"
+  },
+  "validation": {
+    "emptyField": "This field is empty",
+    "email": {
+      "emailError": "Invalid email"
+    }
   }
 }
