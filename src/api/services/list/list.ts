@@ -23,6 +23,8 @@ export const getList = async ({
       description,
       to_do_help_text,
       created_at,
+      done,
+      done_at,
       user_id,
       profiles (
         id,
@@ -37,7 +39,6 @@ export const getList = async ({
     .limit(5)
 
   if (error || !data) {
-    //TODO: improve error handling
     return []
   }
 

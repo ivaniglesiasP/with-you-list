@@ -18,6 +18,8 @@ export type Database = {
         Row: {
           created_at: string
           description: string
+          done: boolean
+          done_at: string | null
           id: string
           to_do_help_text: string | null
           user_id: string
@@ -25,6 +27,8 @@ export type Database = {
         Insert: {
           created_at?: string
           description: string
+          done: boolean
+          done_at?: string | null
           id?: string
           to_do_help_text?: string | null
           user_id: string
@@ -32,6 +36,8 @@ export type Database = {
         Update: {
           created_at?: string
           description?: string
+          done?: boolean
+          done_at?: string | null
           id?: string
           to_do_help_text?: string | null
           user_id?: string

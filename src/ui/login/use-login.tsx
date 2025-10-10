@@ -60,7 +60,7 @@ export function useLogin(): UseLoginReturn {
       return
     }
 
-    router.push('/')
+    router.push('/with-you-list')
   }
 
   const handleEmailChange = useCallback(

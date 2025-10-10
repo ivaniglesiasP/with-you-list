@@ -6,6 +6,10 @@
     "passwordLabel": "Password",
     "logInButton": "Log In"
   },
+  "list": {
+    "addedBy": "Added by",
+    "empty": "Nothin in the list 😭"
+  },
   "validation": {
     "emptyField": "This field is empty",
     "email": {

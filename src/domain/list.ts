@@ -6,4 +6,6 @@ export type ListItem = {
   toDoHelpText: string
   createdAt: string
   user: User
+  done: boolean
+  doneAt: string | null
 }
