@@ -15,7 +15,7 @@ const mockMapListItems = vi.mocked(mapListItems)
 const createMockClient = (
   data?: SupabaseListItem[],
   opts?: { error?: boolean },
-): SupabaseClient<Database['public']> => {
+): SupabaseClient<Database> => {
   return {
     from: vi.fn(() => ({
       select: vi.fn().mockReturnThis(),
@@ -25,7 +25,7 @@ const createMockClient = (
         error: opts?.error ? new Error('query failed') : null,
       })),
     })),
-  } as unknown as SupabaseClient<Database['public']>
+  } as unknown as SupabaseClient<Database>
 }
 
 describe('getList', () => {

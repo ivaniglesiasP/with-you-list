@@ -9,7 +9,7 @@ export const logIn = async ({
 }: {
   email: string
   password: string
-  client: SupabaseClient<Database['public']>
+  client: SupabaseClient<Database>
 }): Promise<LogInResponse> => {
   const { data, error } = await client.auth.signInWithPassword({
     email,

@@ -6,7 +6,7 @@ import { createSupabaseClientForBrowser } from '@/api/supabase/supabase-client-f
 import { Database } from '@/api/supabase/database.types'
 
 type SupabaseContextType = {
-  supabase: SupabaseClient<Database['public']>
+  supabase: SupabaseClient<Database>
 }
 
 const SupabaseContext = createContext<SupabaseContextType | undefined>(

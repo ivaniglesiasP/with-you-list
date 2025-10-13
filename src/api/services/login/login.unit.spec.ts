@@ -12,7 +12,7 @@ describe('logIn', () => {
           error: null,
         }),
       },
-    } as unknown as SupabaseClient<Database['public']>
+    } as unknown as SupabaseClient<Database>
 
     const result = await logIn({
       client: mockedClient,
@@ -29,7 +29,7 @@ describe('logIn', () => {
           error: { message: 'Invalid credentials' },
         }),
       },
-    } as unknown as SupabaseClient<Database['public']>
+    } as unknown as SupabaseClient<Database>
 
     const result = await logIn({
       client: mockedClient,

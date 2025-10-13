@@ -9,7 +9,7 @@ export type SupbaseProfilesItem = Tables<'profiles'>
 export const getUser = async ({
   client,
 }: {
-  client: SupabaseClient<Database['public']>
+  client: SupabaseClient<Database>
 }): Promise<User> => {
   const {
     data: { user },

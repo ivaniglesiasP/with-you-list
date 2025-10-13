@@ -9,3 +9,15 @@ export type ListItem = {
   done: boolean
   doneAt: string | null
 }
+
+export type UpdateListItemErrorMessage = string
+
+export type UpdateItemResponse =
+  | {
+      updatedItem: ListItem
+      errorMessage: null
+    }
+  | {
+      updatedItem: null
+      errorMessage: UpdateListItemErrorMessage
+    }

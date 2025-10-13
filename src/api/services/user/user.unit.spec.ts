@@ -23,7 +23,7 @@ const createMockClient = (
   user?: { id: string },
   profile?: SupbaseProfilesItem,
   opts?: { userError?: boolean; profileError?: boolean },
-): SupabaseClient<Database['public']> => {
+): SupabaseClient<Database> => {
   return {
     auth: {
       getUser: vi.fn(async () => ({
@@ -39,7 +39,7 @@ const createMockClient = (
         error: opts?.profileError ? new Error('profile error') : null,
       })),
     })),
-  } as unknown as SupabaseClient<Database['public']>
+  } as unknown as SupabaseClient<Database>
 }
 
 describe('getUser', () => {

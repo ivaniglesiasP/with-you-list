@@ -7,8 +7,10 @@
     "logInButton": "Log In"
   },
   "list": {
-    "addedBy": "Added by",
-    "empty": "Nothin in the list 😭"
+    "createdAt": "Created at",
+    "doneAt": "Done at",
+    "empty": "Nothin in the list 😭",
+    "error": "Operation canceled try again later"
   },
   "validation": {
     "emptyField": "This field is empty",
