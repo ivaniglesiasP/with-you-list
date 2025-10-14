@@ -7,6 +7,7 @@ import {
   Button,
   useTheme,
 } from '@mui/material'
+import en from '../../../../locales/en.json'
 import { motion } from 'framer-motion'
 
 type MobileConfirmModalProps = {
@@ -36,7 +37,7 @@ const ListItemConfirmModal = ({
         animate: open ? 'visible' : 'hidden',
         transition: { duration: 0.25, ease: 'easeOut' },
         sx: {
-          m: 2, // margen alrededor de la pantalla (deja ver el fondo)
+          m: 2,
           borderRadius: 4,
           backgroundColor: theme.palette.background.paper,
           boxShadow: theme.shadows[6],
@@ -47,7 +48,7 @@ const ListItemConfirmModal = ({
       }}
       sx={{
         '& .MuiBackdrop-root': {
-          backgroundColor: 'rgba(0, 0, 0, 0.3)', // fondo translúcido
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
           backdropFilter: 'blur(2px)',
         },
       }}
@@ -55,7 +56,7 @@ const ListItemConfirmModal = ({
       <DialogTitle
         sx={{ textAlign: 'center', fontWeight: 600, fontSize: '1rem' }}
       >
-        Confirm revert
+        {en.list.confirmModal.modalTitle}
       </DialogTitle>
 
       <DialogContent>
@@ -64,8 +65,7 @@ const ListItemConfirmModal = ({
           align="center"
           sx={{ color: theme.palette.text.secondary, mt: 1 }}
         >
-          This task was completed more than an hour ago. Do you really want to
-          mark it as not done?
+          {en.list.confirmModal.modalContentText}
         </Typography>
       </DialogContent>
 
@@ -87,7 +87,7 @@ const ListItemConfirmModal = ({
             minWidth: 100,
           }}
         >
-          Cancel
+          {en.list.confirmModal.cancelButton}
         </Button>
         <Button
           onClick={onConfirm}
@@ -99,7 +99,7 @@ const ListItemConfirmModal = ({
             minWidth: 100,
           }}
         >
-          Confirm
+          {en.list.confirmModal.confirmButton}
         </Button>
       </DialogActions>
     </Dialog>

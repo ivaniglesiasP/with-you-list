@@ -21,3 +21,15 @@ export type UpdateItemResponse =
       updatedItem: null
       errorMessage: UpdateListItemErrorMessage
     }
+
+export type AddedListItemErrorMessage = string
+
+export type AddedItemResponse =
+  | {
+      addedItem: ListItem
+      errorMessage: null
+    }
+  | {
+      addedItem: null
+      errorMessage: AddedListItemErrorMessage
+    }

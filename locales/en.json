@@ -10,10 +10,27 @@
     "createdAt": "Created at",
     "doneAt": "Done at",
     "empty": "Nothin in the list 😭",
-    "error": "Operation canceled try again later"
+    "error": "Operation canceled try again later",
+    "confirmModal": {
+      "modalTitle": "Confirm revert",
+      "modalContentText": "This to-do was completed more than an hour ago. Do you really want to mark it as not done?",
+      "confirmButton": "Confirm",
+      "cancelButton": "Cancel"
+    },
+    "addItem": {
+      "addButton": "Add to-do with love ❤️",
+      "descriptionLabel": "Description",
+      "toDoHelpTextLabel": "To do help text",
+      "modal": {
+        "title": "Add a to-do with your love ❤️",
+        "cancelButton": "Cancel",
+        "addButton": "Add"
+      }
+    }
   },
   "validation": {
     "emptyField": "This field is empty",
+    "tooShort": "The text is too short",
     "email": {
       "emailError": "Invalid email"
     }

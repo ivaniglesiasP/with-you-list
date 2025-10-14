@@ -1,6 +1,6 @@
 import { mapListItems } from '@/api/mapping/map-list-items'
 import { Database } from '@/api/supabase/database.types'
-import { ListItem, UpdateItemResponse } from '@/domain/list'
+import { AddedItemResponse, ListItem, UpdateItemResponse } from '@/domain/list'
 import { SupabaseClient } from '@supabase/supabase-js'
 import { Tables } from '@/api/supabase/database.types'
 import { SupbaseProfilesItem } from '../user/user'
@@ -72,5 +72,40 @@ export const updateListItem = async ({
     return { updatedItem: null, errorMessage: en.list.error }
   }
 
+  //TODO: create individual mapper
   return { updatedItem: mapListItems([data])[0], errorMessage: null }
+}
+
+export const addListItem = async ({
+  client,
+  description,
+  toDoHelpText,
+  userId,
+}: {
+  client: SupabaseClient<Database>
+  description: string
+  toDoHelpText?: string | null
+  userId: string
+}): Promise<AddedItemResponse> => {
+  const { data, error } = await client
+    .from('list')
+    .insert([
+      {
+        description,
+        to_do_help_text: toDoHelpText ?? null,
+        user_id: userId,
+        done: false,
+        done_at: null,
+      },
+    ])
+    .select(SUPABASE_ITEM_SELECT)
+    .single()
+
+  if (error || !data) {
+    console.error('Error adding list item:', error)
+    return { addedItem: null, errorMessage: en.list.error }
+  }
+
+  //TODO: create individual mapper
+  return { addedItem: mapListItems([data])[0], errorMessage: null }
 }
