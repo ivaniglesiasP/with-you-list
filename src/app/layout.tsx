@@ -31,6 +31,7 @@ export default function RootLayout({
               <Box
                 sx={{
                   maxWidth: 550,
+                  minWidth: 390,
                   height: '100vh',
                   maxHeight: 844,
                   bgcolor: 'background.paper',
