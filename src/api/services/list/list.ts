@@ -37,7 +37,7 @@ export const getList = async ({
     .from('list')
     .select(SUPABASE_ITEM_SELECT)
     .order('created_at', { ascending: false })
-    .limit(5)
+    .limit(30)
 
   if (error || !data) {
     return []

@@ -31,7 +31,17 @@ const List = ({ listItems: listItemFromApi, userId }: ItemListProps) => {
           userId={userId}
         />
       </Stack>
-      <Stack spacing={2} sx={{ px: 2, flex: 1, overflowY: 'auto' }}>
+      <Stack
+        spacing={2}
+        sx={{
+          px: 2,
+          flex: 1,
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          touchAction: 'pan-y',
+          overscrollBehavior: 'contain',
+        }}
+      >
         {listItems.length > 0 ? (
           listItems.map((item) => <ListItem key={item.id} listItem={item} />)
         ) : (

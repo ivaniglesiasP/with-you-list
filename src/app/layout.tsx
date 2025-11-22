@@ -21,7 +21,8 @@ export default function RootLayout({
           <SupabaseProvider>
             <Box
               sx={{
-                minHeight: '100vh',
+                position: 'fixed',
+                inset: 0,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -31,12 +32,13 @@ export default function RootLayout({
               <Box
                 sx={{
                   maxWidth: 550,
-                  minWidth: 390,
-                  height: '100vh',
+                  height: '100dvh',
                   maxHeight: 844,
                   bgcolor: 'background.paper',
                   borderRadius: 3,
                   boxShadow: 3,
+                  display: 'flex',
+                  flexDirection: 'column',
                   overflow: 'hidden',
                 }}
               >
